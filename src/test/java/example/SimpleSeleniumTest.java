@@ -10,7 +10,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class SimpleSeleniumTest {
     @Test
     void testGoogleSearch() throws Exception {
-        // Need to set "webdriver.chrome.driver" environment variable
+        // Set "webdriver.chrome.driver" environment variable
+        String path = System.getProperty("DRIVERPATH");
+        if (path == null) {
+            path = "/usr/bin/google-chrome";
+        }
+        System.setProperty("webdriver.chrome.driver", path);
+
         WebDriver driver = new ChromeDriver();
         driver.get("http://www.google.com/");
         Thread.sleep(1000);
